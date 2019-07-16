@@ -1,0 +1,25 @@
+syntax = "proto3";
+package crypto;
+
+service Crypto {
+    rpc EncryptData (TrackableDecryptedRequest) returns (EncryptedText) {};
+    rpc DecryptData (TrackableEncryptedRequest) returns (DecryptedText) {};
+}
+
+message EncryptedText {
+    string encrypted_data = 1;
+}
+
+message DecryptedText {
+    string text_data = 1;
+}
+
+message TrackableDecryptedRequest {
+    string job_id = 1;
+    DecryptedText data = 2;
+}
+
+message TrackableEncryptedRequest {
+    string job_id = 1;
+    EncryptedText data = 2;
+}
